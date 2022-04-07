@@ -14,8 +14,24 @@ let schema = new Schema(
   {
     id: { type: "string" },
     name: { type: "string" },
-    class: { type: "string" },
-    points: { type: "string" },
+
+    pointsA: { type: "string" },
+    notA: { type: "string" },
+
+    pointsB: { type: "string" },
+    notB: { type: "string" },
+
+    pointsC: { type: "string" },
+    notC: { type: "string" },
+
+    pointsD: { type: "string" },
+    notD: { type: "string" },
+
+    pointsE: { type: "string" },
+    notE: { type: "string" },
+
+    pointsF: { type: "string" },
+    notF: { type: "string" },
   },
   {
     dataStructure: "JSON",
@@ -50,4 +66,26 @@ export async function searchStudent(q: any) {
   ).map((x) => x.entityData);
 
   return student;
+}
+
+export async function updateStudent(data: any) {
+  await connect();
+
+  const repository = client.fetchRepository(schema);
+
+  const student = await repository
+    .search()
+    .where("id")
+    .eq(data.id)
+    .return.first();
+  if (!student) {
+    return undefined;
+  }
+
+  for (const key in data) {
+    student.entityData[key] = data[key];
+  }
+
+  const id = await repository.save(student);
+  return id;
 }

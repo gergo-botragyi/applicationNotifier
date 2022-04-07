@@ -1,13 +1,9 @@
-import StudentDefineForm from "../lib/StudentDefineForm";
 import StudentSearchForm from "../lib/SearchForm";
-import FillDatabaseInput from "../lib/fillDatabase";
 
 export default function Home() {
   return (
-    <div>
-      <StudentDefineForm />
+    <div className="flex w-full h-[100vh] bg-gray justify-center items-center">
       <StudentSearchForm />
-      <FillDatabaseInput />
     </div>
   );
 }

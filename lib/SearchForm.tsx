@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default function StudentSearchForm() {
-  const [searchResult, setSearchResult] = useState({});
+  const [searchResult, setSearchResult] = useState();
 
   const search = async (event: any) => {
     event.preventDefault();
@@ -17,10 +17,19 @@ export default function StudentSearchForm() {
   };
 
   return (
-    <div>
+    <div className="text-zinc-200 w-1/4">
       <form onSubmit={search}>
-        <input type="text" id="input" />
-        <button type="submit">Search</button>
+        <div className="flex flex-row justify-center items-center">
+          <input
+            type="number"
+            id="input"
+            className="rounded m-1 p-1 text-black appearance-none"
+            placeholder="Student ID number"
+          />
+          <button type="submit" className="p-1 m-1 border-2 rounded-md">
+            Search
+          </button>
+        </div>
       </form>
       <div>{JSON.stringify(searchResult)}</div>
     </div>

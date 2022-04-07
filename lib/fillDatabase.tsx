@@ -1,29 +1,33 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 export default function FillDatabaseInput() {
-  const [response, setResponse] = useState("");
-  const handleSubmit = async (event: any) => {
+  const [file, setFile] = useState(null as any);
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setFile(event?.target?.files?.[0]);
+  };
+  const handleSubmit = async (event: ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const form = new FormData();
+    form.append("file", file);
+    form.append("fileName", file.name);
 
-    /*const send = await fetch("./api/fillDatabase", {
-      body: JSON.stringify(event.target.fileInput.value),
-      headers: {
-        "Content-Type": "application/json",
-      },
+    const send = await fetch("/api/fillDatabase", {
+      body: form,
       method: "POST",
     });
-
-    const res = await send.json();
-    setResponse(res);*/
-    setResponse(event.target.fileInput.value);
   };
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <input type="file" id="fileInput" />
+        <input
+          type="file"
+          id="fileInput"
+          name="fileInput"
+          onChange={handleChange}
+        />
         <button type="submit">Submit</button>
       </form>
-      <p>{response}</p>
+      <p></p>
     </div>
   );
 }
