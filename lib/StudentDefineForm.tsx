@@ -1,3 +1,5 @@
+import Notification from "./NotificaionElement";
+import Points from "./PointsElement";
 export default function StudentDefineForm() {
   const handleSubmit = async (event: any) => {
     event.preventDefault();
@@ -29,12 +31,11 @@ export default function StudentDefineForm() {
   };
 
   return (
-    <div className="w-1/3 text-zinc-200 justify-center items-center">
-      <form
+    <form
         onSubmit={handleSubmit}
-        className="flex flex-col justify-center items-center"
+        className="flex flex-col justify-center items-center text-zinc-200 flex-wrap md:w-fit w-2/3"
       >
-        <div className="flex flex-row">
+        <div className="flex flex-row mb-1 justify-center items-center flex-wrap md:flex-nowrap mx-1">
           <input
             name="id"
             type="text"
@@ -49,89 +50,29 @@ export default function StudentDefineForm() {
             placeholder="Name"
           />
         </div>
-        <div className="flex flex-row">
-          <input
-            name="pointsA"
-            type="number"
-            className="formElement"
-            placeholder="Class A points"
-          />
-          <input
-            name="notA"
-            type="text"
-            className="formElement"
-            placeholder="Class A acceptance"
-          />
+        <div className="inputContainer">
+          <Points Class="A"/>
+          <Notification Class="A"/>
         </div>
-        <div className="flex flex-row">
-          <input
-            name="pointsB"
-            type="number"
-            className="formElement"
-            placeholder="Class B points"
-          />
-          <input
-            name="notB"
-            type="text"
-            className="formElement"
-            placeholder="Class B acceptance"
-          />
+        <div className="inputContainer">
+          <Points Class="B"/>
+          <Notification Class="B"/>
         </div>
-        <div className="flex flex-row">
-          <input
-            name="pointsC"
-            type="number"
-            className="formElement"
-            placeholder="Class C points"
-          />
-          <input
-            name="notC"
-            type="text"
-            className="formElement"
-            placeholder="Class C acceptance"
-          />
+        <div className="inputContainer">
+          <Points Class="C"/>
+          <Notification Class="C"/>
         </div>
-        <div className="flex flex-row">
-          <input
-            name="pointsD"
-            type="number"
-            className="formElement"
-            placeholder="Class D points"
-          />
-          <input
-            name="notD"
-            type="text"
-            className="formElement"
-            placeholder="Class D acceptance"
-          />
+        <div className="inputContainer">
+          <Points Class="D"/>
+          <Notification Class="D"/>
         </div>
-        <div className="flex flex-row">
-          <input
-            name="pointsE"
-            type="number"
-            className="formElement"
-            placeholder="Class E points"
-          />
-          <input
-            name="notE"
-            type="text"
-            className="formElement"
-            placeholder="Class E acceptance"
-          />
+        <div className="inputContainer">
+          <Points Class="E"/>
+          <Notification Class="E"/>
         </div>
-        <div className="flex flex-row">
-          <input
-            name="pointsF"
-            type="number"
-            className="formElement"
-            placeholder="Class F points"
-          />
-          <input
-            name="notF"
-            type="text"
-            className="formElement"
-            placeholder="Class F acceptance"
-          />
+        <div className="inputContainer">
+          <Points Class="F"/>
+          <Notification Class="F"/>
         </div>
         <button
           type="submit"
@@ -140,6 +81,5 @@ export default function StudentDefineForm() {
           Create Student
         </button>
       </form>
-    </div>
   );
 }
