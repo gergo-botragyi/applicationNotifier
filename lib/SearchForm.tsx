@@ -1,22 +1,8 @@
 import { useState } from "react";
+import ResultElement from "./searchResultElement";
 
 export default function StudentSearchForm() {
-  /*const [id, setID] = useState("");
-  const [name, setName] = useState("");
-  const [poinstA, setPointsA] = useState("");
-  const [notA, setNotA] = useState("");
-  const [poinstB, setPointsB] = useState("");
-  const [notB, setNotB] = useState("");
-  const [poinstC, setPointsC] = useState("");
-  const [notC, setNotC] = useState("");
-  const [poinstD, setPointsD] = useState("");
-  const [notD, setNotD] = useState("");
-  const [poinstE, setPointsE] = useState("");
-  const [notE, setNotE] = useState("");
-  const [poinstF, setPointsF] = useState("");
-  const [notF, setNotF] = useState("");*/
-
-  const [searchResult, setSearchResult] = useState("");
+  const [searchResult, setSearchResult] = useState({} as any);
 
   const search = async (event: any) => {
     event.preventDefault();
@@ -28,7 +14,7 @@ export default function StudentSearchForm() {
 
     const result = await res.json();
     console.log(result.student[0]);
-    setSearchResult(JSON.stringify(result.student[0]));
+    setSearchResult(result.student[0]);
   };
 
   return (
@@ -46,7 +32,21 @@ export default function StudentSearchForm() {
           </button>
         </div>
       </form>
-      <div>{searchResult}</div>
+      <div>
+        <div>Oktatási azonosító: {searchResult["id"]}</div>
+        <div>Név: {searchResult["name"]}</div>
+        <div className="flex justify-between">
+          <div>Osztály</div>
+          <div>Pontszám</div>
+          <div>Eredmény</div>
+        </div>
+        <ResultElement Class="A" searchResult={searchResult} />
+        <ResultElement Class="B" searchResult={searchResult} />
+        <ResultElement Class="C" searchResult={searchResult} />
+        <ResultElement Class="D" searchResult={searchResult} />
+        <ResultElement Class="E" searchResult={searchResult} />
+        <ResultElement Class="F" searchResult={searchResult} />
+      </div>
     </div>
   );
 }
