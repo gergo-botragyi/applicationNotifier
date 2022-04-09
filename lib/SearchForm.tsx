@@ -1,7 +1,22 @@
 import { useState } from "react";
 
 export default function StudentSearchForm() {
-  const [searchResult, setSearchResult] = useState();
+  /*const [id, setID] = useState("");
+  const [name, setName] = useState("");
+  const [poinstA, setPointsA] = useState("");
+  const [notA, setNotA] = useState("");
+  const [poinstB, setPointsB] = useState("");
+  const [notB, setNotB] = useState("");
+  const [poinstC, setPointsC] = useState("");
+  const [notC, setNotC] = useState("");
+  const [poinstD, setPointsD] = useState("");
+  const [notD, setNotD] = useState("");
+  const [poinstE, setPointsE] = useState("");
+  const [notE, setNotE] = useState("");
+  const [poinstF, setPointsF] = useState("");
+  const [notF, setNotF] = useState("");*/
+
+  const [searchResult, setSearchResult] = useState("");
 
   const search = async (event: any) => {
     event.preventDefault();
@@ -13,7 +28,7 @@ export default function StudentSearchForm() {
 
     const result = await res.json();
     console.log(result.student[0]);
-    setSearchResult(result.student[0]);
+    setSearchResult(JSON.stringify(result.student[0]));
   };
 
   return (
@@ -31,7 +46,7 @@ export default function StudentSearchForm() {
           </button>
         </div>
       </form>
-      <div>{JSON.stringify(searchResult)}</div>
+      <div>{searchResult}</div>
     </div>
   );
 }

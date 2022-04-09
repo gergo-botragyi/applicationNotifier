@@ -39,7 +39,9 @@ let schema = new Schema(
 );
 
 export async function defineStudent(data: any) {
-  await connect();
+  if (!client.isOpen()) {
+    await connect();
+  }
 
   const repository = client.fetchRepository(schema);
 
@@ -50,14 +52,18 @@ export async function defineStudent(data: any) {
 }
 
 export async function createIndex() {
-  await connect();
+  if (!client.isOpen()) {
+    await connect();
+  }
 
   const repository = client.fetchRepository(schema);
   await repository.createIndex();
 }
 
 export async function searchStudent(q: any) {
-  await connect();
+  if (!client.isOpen()) {
+    await connect();
+  }
 
   const repository = client.fetchRepository(schema);
 
@@ -68,8 +74,26 @@ export async function searchStudent(q: any) {
   return student;
 }
 
+export async function checkP(q: any) {
+  if (!client.isOpen()) {
+    await connect();
+  }
+
+  const repository = client.fetchRepository(schema);
+
+  const p = await repository.search().where("id").eq(q).return.first();
+
+  if (!p) {
+    return undefined;
+  }
+
+  return "checked";
+}
+
 export async function updateStudent(data: any) {
-  await connect();
+  if (!client.isOpen()) {
+    await connect();
+  }
 
   const repository = client.fetchRepository(schema);
 
