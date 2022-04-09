@@ -35,11 +35,8 @@ export default async function handler(req: any, res: any) {
       "pointsF":"${lineElements[12]}","notF":"${lineElements[13]}"
     }`;
     const result = await updateStudent(JSON.parse(newStudent));
-    if (result) {
-      console.log(`updated student: ${result}`);
-    } else {
+    if (!result) {
       const define = await defineStudent(JSON.parse(newStudent));
-      console.log(define);
     }
   }
   res.send("amogus");

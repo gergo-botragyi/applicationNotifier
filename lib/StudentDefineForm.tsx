@@ -10,6 +10,7 @@ export default function StudentDefineForm() {
       body: JSON.stringify({ q }),
     });
     if (res.status != 200) {
+      alert("Incorrect password! Please try again!");
       return;
     }
 
@@ -25,7 +26,9 @@ export default function StudentDefineForm() {
     });
     if (update.ok) {
       const result = await update.json();
-      console.log(`updated student: ${JSON.stringify(result)}`);
+      if (result.ok) {
+        alert("Successfully updated student in database!");
+      }
     } else {
       const res = await fetch("/api/students", {
         body: JSON.stringify(formData),
@@ -35,7 +38,13 @@ export default function StudentDefineForm() {
         method: "POST",
       });
       const result = await res.json();
-      console.log(`created student: ${JSON.stringify(result)}`);
+      if (!result.ok) {
+        alert(
+          "There was a problem while creating the student in the database! Please try again!"
+        );
+        return;
+      }
+      alert("Successfully created student in database!");
     }
   };
 

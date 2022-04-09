@@ -7,9 +7,13 @@ export default function ResultElement({
 }) {
   return (
     <div className="flex justify-between">
-      <div>{Class}</div>
-      <div>{searchResult[`points${Class}`]}</div>
-      <div>{searchResult[`not${Class}`]}</div>
+      <div className="searchResultElement border-l-[1px]">{Class}</div>
+      <div className="searchResultElement">
+        {searchResult[`points${Class}`]}
+      </div>
+      <div className="searchResultElement justify-center items-center">
+        {searchResult[`not${Class}`]}
+      </div>
     </div>
   );
 }

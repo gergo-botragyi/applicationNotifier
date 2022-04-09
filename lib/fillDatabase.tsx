@@ -31,6 +31,13 @@ export default function FillDatabaseInput() {
       body: form,
       method: "POST",
     });
+    if (!send.ok) {
+      alert(
+        "There was an error while uploading the file to the database! Plase try again!"
+      );
+      return;
+    }
+    alert("Successfully uploaded the file to database!");
   };
   return (
     <form

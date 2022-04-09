@@ -1,4 +1,4 @@
-import { Client, Entity, Schema, Repository } from "redis-om";
+import { Client, Entity, Schema } from "redis-om";
 
 const client = new Client();
 
@@ -39,9 +39,7 @@ let schema = new Schema(
 );
 
 export async function defineStudent(data: any) {
-  if (!client.isOpen()) {
-    await connect();
-  }
+  await connect();
 
   const repository = client.fetchRepository(schema);
 
@@ -52,32 +50,25 @@ export async function defineStudent(data: any) {
 }
 
 export async function createIndex() {
-  if (!client.isOpen()) {
-    await connect();
-  }
+  await connect();
 
   const repository = client.fetchRepository(schema);
   await repository.createIndex();
 }
 
 export async function searchStudent(q: any) {
-  if (!client.isOpen()) {
-    await connect();
-  }
+  await connect();
 
   const repository = client.fetchRepository(schema);
 
   const student = (
     await repository.search().where("id").eq(q).return.all()
   ).map((x) => x.entityData);
-
   return student;
 }
 
 export async function checkP(q: any) {
-  if (!client.isOpen()) {
-    await connect();
-  }
+  await connect();
 
   const repository = client.fetchRepository(schema);
 
@@ -86,14 +77,11 @@ export async function checkP(q: any) {
   if (!p) {
     return undefined;
   }
-
   return "checked";
 }
 
 export async function updateStudent(data: any) {
-  if (!client.isOpen()) {
-    await connect();
-  }
+  await connect();
 
   const repository = client.fetchRepository(schema);
 
