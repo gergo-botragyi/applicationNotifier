@@ -1,9 +1,11 @@
 import { Client, Entity, Schema } from "redis-om";
-
 const client = new Client();
 
+let connected = false;
+
 export default async function connect() {
-  if (!client.isOpen()) {
+  if (!connected) {
+    connected = true;
     await client.open(process.env.REDIS_URL);
   }
 }
