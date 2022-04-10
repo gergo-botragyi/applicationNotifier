@@ -1,3 +1,12 @@
+This application uses Redis as it's database. Before cloning, please make a database at [Redis.com](https://redis.com/).
+After cloning, please make a `.env.local` file and add the following line:
+```
+REDIS_URL=redis://default:PASSWORD@HOST:PORT 
+```
+Replace the values with config details provided by Redis Enterprise Cloud.
+
+Also [here](https://fireship.io/lessons/redis-nextjs/) is a cool tutorial about [Redis](https://redis.com/) and [Redis-OM](https://github.com/redis/redis-om-node).
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
